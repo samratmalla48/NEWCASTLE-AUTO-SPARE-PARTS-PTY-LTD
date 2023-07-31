@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import path from "path";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
+import Authroutes from "./routes/authRoute.js"
 
 // configure dotenv file
 dotenv.config();
@@ -15,6 +16,9 @@ const app = express();
 // middleware
 app.use(express.json())
 app.use(morgan('dev'))
+
+// routes
+app.use('/api/v1/auth',Authroutes);
 
 
 const PORT=process.env.PORT|| 8080;
