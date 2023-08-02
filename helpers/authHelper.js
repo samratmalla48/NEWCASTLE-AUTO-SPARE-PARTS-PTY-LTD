@@ -1,8 +1,7 @@
 import bcrypt from 'bcrypt'
 import { error } from 'console'
-import { erf } from 'mathjs'
 
-export const hasPassword= async(ppassword)=>{
+export const hashPassword= async(password)=>{
     try{
         const saltRounds=10;
         const hashedPassword=await bcrypt.hash(password,saltRounds);
@@ -13,6 +12,6 @@ export const hasPassword= async(ppassword)=>{
     }
 };
 export const compare=async(password,hashedPassword)=>{
-    return bcrypt.compare(passwprd,hashedPassword);
+    return bcrypt.compare(password,hashedPassword);
 
 }
