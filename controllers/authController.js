@@ -1,6 +1,6 @@
 import { hashPassword } from "../helpers/authHelper.js";
 import userModel from "../models/userModel.js";
-
+import JWT from "jsonwebtoken";
 export const registerController = async (req, res) => {
   try {
     console.log("Top  here");
@@ -31,7 +31,7 @@ export const registerController = async (req, res) => {
       });
     }
     if (existingUser.email) {
-      return res.send({ error: "Email is already there" });
+      return res.send({ error: "Email is alread  there" });
     }
 
     // Register user if the user doesn't exist
@@ -54,6 +54,42 @@ export const registerController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error in registration",
+      error,
+    });
+  }
+};
+// POST LOGIN
+export const loginController = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    // Validation
+    if (!email || !password) {
+      return res.status(404).send({
+        success: false,
+        message: "Invalid email or password",
+      });
+    }
+    // toke create
+    const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
+    // check user
+    const user = await userModel.findOne({ email });
+    const match = await comparePassword(password, user.password);
+    if (!match) {
+      return res.status(200).send({
+        success: false,
+        message: "Invalid Password",
+      });
+    }
+  } catch {
+    console.log(" catch here");
+
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "error in login",
       error,
     });
   }
