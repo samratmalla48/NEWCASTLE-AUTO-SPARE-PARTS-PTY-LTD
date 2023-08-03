@@ -5,7 +5,6 @@ import { comparePassword } from "../helpers/authHelper.js";
 
 export const registerController = async (req, res) => {
   try {
-    console.log("top", req.body);
     // Validation check
     const { name, email, password, phone, address } = req.body;
     if (!name) {
@@ -23,32 +22,20 @@ export const registerController = async (req, res) => {
     if (!address) {
       return res.send({ error: "Address is required" });
     }
-    console.log("mid", req.body);
+
     // Check if the user already exists in the database
     const existingUser = await userModel.findOne({ email });
-    console.log(existingUser, "hgtyuikmnbvrtyuk,");
 
     if (existingUser) {
-      console.log(existingUser.email, "samrat a");
       return res.status(200).send({
         success: true,
         message: "Already Registered. Please login.",
       });
     }
-    // if (existingUser.email) {
-    //   console.log("is it here?");
 
-    //   // return res.status(200).send({ error: "phone is already  there" });
-    //   return res.status(200).send({
-    //     success: true,
-    //     message: " email registered already.",
-    //   });
-    // }
-
-    // Register user if the user doesn't exist
     const hashedPassword = await hashPassword(password); // Assuming there is a hashPassword function defined elsewhere
     console.log("hased passwprd", hashPassword);
-    console.log("lasrt");
+
     const user = new userModel({
       name,
       email,
@@ -123,4 +110,9 @@ export const loginController = async (req, res) => {
       error,
     });
   }
+};
+
+// testing JWT Secret Key
+export const testController = (req, res) => {
+  console.log("valuable data");
 };
