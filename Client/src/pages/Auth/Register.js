@@ -1,33 +1,40 @@
 import React, { useState } from "react";
 import Layout from "../../components/layouts/Layout";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
+  const navigate = useNavigate();
 
   // form function
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Registered Successfully");
+
+    toast.success("Register successful");
   };
+
   return (
-    <Layout title={"Register Page"}>
-      <div className="register">
+    <Layout title="Register - Ecommer App">
+      <div className="form-container" style={{ minHeight: "90vh" }}>
         <form onSubmit={handleSubmit}>
-          <h1>Register Page</h1>
+          <h4 className="title">REGISTER FORM</h4>
           <div className="mb-3">
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="form-control"
-              id="exampleInputEmail1"
               placeholder="Enter Your Name"
-              aria-describedby="emailHelp"
               required
+              autoFocus
             />
           </div>
           <div className="mb-3">
@@ -36,9 +43,7 @@ const Register = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Enter your Email Address"
-              aria-describedby="emailHelp"
+              placeholder="Enter Your Email "
               required
             />
           </div>
@@ -48,7 +53,6 @@ const Register = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="form-control"
-              id="exampleInputPassword1"
               placeholder="Enter Your Password"
               required
             />
@@ -59,9 +63,7 @@ const Register = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className="form-control"
-              id="exampleInputEmail1"
               placeholder="Enter Your Phone"
-              aria-describedby="emailHelp"
               required
             />
           </div>
@@ -71,15 +73,22 @@ const Register = () => {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               className="form-control"
-              id="exampleInputEmail1"
               placeholder="Enter Your Address"
-              aria-describedby="emailHelp"
               required
             />
           </div>
-
+          <div className="mb-3">
+            <input
+              type="text"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              className="form-control"
+              placeholder="What is Your Favorite sports"
+              required
+            />
+          </div>
           <button type="submit" className="btn btn-primary">
-            Submit
+            REGISTER
           </button>
         </form>
       </div>

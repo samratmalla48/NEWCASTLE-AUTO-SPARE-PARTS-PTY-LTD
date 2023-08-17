@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import Pagenotfound from "./pages/Pagenotfound";
 import Catalogue from "./pages/Catalogue";
 import Register from "./pages/Auth/Register";
+
 function App() {
   return (
     <>
