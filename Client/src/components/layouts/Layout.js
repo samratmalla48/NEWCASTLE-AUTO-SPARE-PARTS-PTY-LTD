@@ -29,7 +29,7 @@ Layout.defaultProps = {
   title: "Newcastle AutoParts - shop now",
   description: "mern stack project",
   keywords: "mern,react,node,mongodb",
-  author: "Samrat Malla",
+  author: "Samrat Mallaa",
 };
 
 export default Layout;
