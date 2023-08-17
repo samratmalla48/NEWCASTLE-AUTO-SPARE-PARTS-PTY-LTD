@@ -5,7 +5,6 @@ import Footer from "./Footer";
 const Layout = (porps) => {
   return (
     <div>
-      Layout
       <Header />
       <main>{porps.children}</main>
       <Footer />
